@@ -132,7 +132,7 @@ async def build(core, tmp: Path) -> dict:
 
     # ---------------- successful handshake (real code, fixed randomness) ----
     client, host, log_c, log_h, res = await run_handshake(core, PASSWORD, PASSWORD)
-    assert res == [None, 0], res   # host returns the index of the matching password
+    assert res == [None, None], res  # both handshakes complete successfully
     hello, proof = strip(log_c[0]), strip(log_c[1])
     ack, ok = strip(log_h[0]), strip(log_h[1])
     transcript = hashlib.sha256(hello + ack).digest()
