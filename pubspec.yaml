@@ -1,0 +1,26 @@
+name: remotelink
+description: NexaLink remote desktop viewer for Android
+publish_to: none
+version: 1.2.0+2
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cryptography: ^2.7.0
+  pointycastle: ^3.9.1
+  crypto: ^3.0.5
+  path_provider: ^2.1.4
+  file_picker: ^8.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
