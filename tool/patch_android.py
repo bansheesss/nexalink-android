@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Patch generated Flutter Android project with NexaLink branding/resources."""
+"""Patch generated Flutter Android project with ViunaLink branding/resources."""
 from pathlib import Path
 import shutil
 import re
@@ -13,7 +13,7 @@ for permission in ("android.permission.INTERNET", "android.permission.ACCESS_NET
     tag = f'<uses-permission android:name="{permission}" />'
     if permission not in text:
         text = text.replace("<application", f"    {tag}\n    <application", 1)
-text = re.sub(r'android:label="[^"]*"', 'android:label="NexaLink"', text, count=1)
+text = re.sub(r'android:label="[^"]*"', 'android:label="ViunaLink"', text, count=1)
 if 'android:icon=' in text:
     text = re.sub(r'android:icon="[^"]*"', 'android:icon="@mipmap/ic_launcher"', text, count=1)
 else:
@@ -32,4 +32,4 @@ if source.exists():
                     shutil.copy2(child, dest / child.name)
         elif item.is_file():
             shutil.copy2(item, dest)
-print("Patched Android manifest and NexaLink launcher icons")
+print("Patched Android manifest and ViunaLink launcher icons")
