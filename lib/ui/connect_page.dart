@@ -82,7 +82,7 @@ class _ConnectPageState extends State<ConnectPage> {
       _lanHostFound = lan;
       _checkingStatus = false;
       _statusText = lan
-          ? 'کامپیوتر NexaLink در شبکه محلی پیدا شد'
+          ? 'کامپیوتر ViunaLink در شبکه محلی پیدا شد'
           : internet
               ? 'اینترنت برقرار است؛ کامپیوتر محلی پیدا نشد'
               : 'اینترنت و کامپیوتر محلی در دسترس نیستند';
@@ -98,7 +98,7 @@ class _ConnectPageState extends State<ConnectPage> {
   void _showAbout() {
     showAboutDialog(
       context: context,
-      applicationName: 'NexaLink',
+      applicationName: 'ViunaLink',
       applicationVersion: '1.2.0',
       applicationLegalese: 'نویسنده: Banshee',
       children: const [Text('کنترل امن کامپیوتر از طریق شبکه محلی و سرور ریلی.')],
@@ -185,7 +185,7 @@ class _ConnectPageState extends State<ConnectPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('NexaLink'),
+        title: const Text('ViunaLink'),
         actions: [
           IconButton(
             tooltip: 'بررسی دوباره وضعیت شبکه',
