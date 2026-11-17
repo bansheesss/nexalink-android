@@ -65,9 +65,9 @@ jobs:
       - name: Analyze
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
-      # Protocol/security compatibility with the Python reference. If this
+      # Protocol/security compatibility with the Windows reference. If this
       # fails the APK is NOT built (on purpose).
-      - name: Test (golden vectors from the Python reference)
+      - name: Test (golden vectors from the Windows reference)
         run: flutter test --reporter expanded
 
       - name: Build release APKs (one per ABI)
