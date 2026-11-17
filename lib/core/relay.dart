@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'errors.dart';
 import 'network.dart';
 
 class RelaySettings {
