@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Generate golden test vectors from the *real* Python RemoteLink code.
+"""Generate golden test vectors from the ViunaLink Windows reference implementation.
 
-    python tool/gen_golden.py --repo ../remotelink-python --out test/vectors/golden.json
+    python tool/gen_golden.py --repo ../nexalink-windows --out test/vectors/golden.json
 
-The Python repo is the source of truth: handshake bytes, encrypted frames,
+The Windows repo is the source of truth: handshake bytes, encrypted frames,
 message packers, file-transfer replies, filename sanitising and discovery
 packets are all produced by running its actual modules (with fixed keys/salt).
 Output is deterministic, so CI can regenerate it and diff against the
@@ -132,7 +132,7 @@ async def build(core, tmp: Path) -> dict:
 
     # ---------------- successful handshake (real code, fixed randomness) ----
     client, host, log_c, log_h, res = await run_handshake(core, PASSWORD, PASSWORD)
-    assert res == [None, None], res  # both handshakes complete successfully
+    assert res == [None, 0], res  # client completes; Windows host returns the matched password index (0)
     hello, proof = strip(log_c[0]), strip(log_c[1])
     ack, ok = strip(log_h[0]), strip(log_h[1])
     transcript = hashlib.sha256(hello + ack).digest()
@@ -321,7 +321,7 @@ async def build(core, tmp: Path) -> dict:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--repo", required=True, help="path to remotelink-python checkout")
+    ap.add_argument("--repo", required=True, help="path to nexalink-windows checkout")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     sys.path.insert(0, str(Path(a.repo).resolve()))
