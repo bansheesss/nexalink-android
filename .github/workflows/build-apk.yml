@@ -54,7 +54,7 @@ jobs:
         run: |
           if [ ! -d android ]; then
             cp -r lib /tmp/lib_bak && cp pubspec.yaml /tmp/pubspec_bak.yaml
-            flutter create --platforms=android --org com.nexalink --project-name nexalink .
+            flutter create --platforms=android --org com.viunalink --project-name viunalink .
             rm -rf lib && cp -r /tmp/lib_bak lib && cp /tmp/pubspec_bak.yaml pubspec.yaml
             rm -f test/widget_test.dart
           fi
@@ -79,12 +79,12 @@ jobs:
           mkdir -p dist
           for abi in arm64-v8a armeabi-v7a x86_64; do
             f="build/app/outputs/flutter-apk/app-$abi-release.apk"
-            [ -f "$f" ] && cp "$f" "dist/nexalink-$VERSION-$abi-release.apk"
+            [ -f "$f" ] && cp "$f" "dist/viunalink-$VERSION-$abi-release.apk"
           done
           ls -la dist
 
       - uses: actions/upload-artifact@v4
         with:
-          name: nexalink-apk
+          name: viunalink-apk
           path: dist/*.apk
           if-no-files-found: error
