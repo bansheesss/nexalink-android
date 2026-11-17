@@ -9,8 +9,8 @@ void main() {
   runApp(const ViunaLinkApp());
 }
 
-class RemoteLinkApp extends StatelessWidget {
-  const RemoteLinkApp({super.key});
+class ViunaLinkApp extends StatelessWidget {
+  const ViunaLinkApp({super.key});
 
   @override
   Widget build(BuildContext context) {
