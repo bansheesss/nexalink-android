@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:remotelink/core/bytes.dart';
+import 'package:viunalink/core/bytes.dart';
 
-/// Vectors produced by tool/gen_golden.py from the Python reference.
+/// Vectors produced by tool/gen_golden.py from the ViunaLink Windows reference.
 final Map<String, dynamic> golden =
     jsonDecode(File('test/vectors/golden.json').readAsStringSync())
         as Map<String, dynamic>;
