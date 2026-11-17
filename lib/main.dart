@@ -6,7 +6,7 @@ import 'ui/nav.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const RemoteLinkApp());
+  runApp(const ViunaLinkApp());
 }
 
 class RemoteLinkApp extends StatelessWidget {
