@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:remotelink/core/bytes.dart';
-import 'package:remotelink/core/errors.dart';
-import 'package:remotelink/core/protocol.dart';
+import 'package:viunalink/core/bytes.dart';
+import 'package:viunalink/core/errors.dart';
+import 'package:viunalink/core/protocol.dart';
 
 import 'golden.dart';
 
