@@ -1,7 +1,7 @@
 # ViunaLink برای اندروید (Viewer)
 
 اپ اندروید برای کنترل کامپیوتری که **ViunaLink ویندوز** روی آن Host است.
-پروتکل و رمزنگاری دقیقاً همان نسخه‌ی پایتون است (X25519 + scrypt(پسورد) + HKDF + AES‑256‑GCM).
+پروتکل و رمزنگاری با پیاده‌سازی مرجع ViunaLink ویندوز هماهنگ است (X25519 + scrypt(پسورد) + HKDF + AES‑256‑GCM).
 
 ## امکانات
 - نمایش زنده‌ی صفحه (JPEG/WebP)، نمایش fps و ping
@@ -30,19 +30,19 @@ git push -u origin main
 APK با کلید debug امضا می‌شود؛ برای Play Store باید keystore بسازید.
 
 Workflow دو job دارد:
-1. **golden-drift**: ریپوی پایتون را checkout می‌کند، `tool/gen_golden.py` را اجرا می‌کند و با
-   `test/vectors/golden.json` مقایسه می‌کند. اگر پروتکل پایتون تغییر کند قرمز می‌شود.
+1. **golden-drift**: ریپوی ViunaLink ویندوز (`bansheesss/nexalink-windows`) را checkout می‌کند، `tool/gen_golden.py` را اجرا می‌کند و با
+   `test/vectors/golden.json` مقایسه می‌کند. اگر پروتکل نسخه مرجع ویندوز تغییر کند و تست‌های اندروید به‌روز نشوند، قرمز می‌شود.
 2. **build**: Flutter 3.24.5 و Java 17، ساخت پوشه‌ی `android/` در صورت نبودن، `flutter analyze`،
-   **`flutter test`** (تست سازگاری با پایتون) و فقط در صورت سبز بودن تست‌ها `flutter build apk`.
+   **`flutter test`** (تست سازگاری با نسخه مرجع ویندوز) و فقط در صورت سبز بودن تست‌ها `flutter build apk`.
 
 ## تست سازگاری (golden vectors)
-`tool/gen_golden.py` با ثابت‌کردن کلیدها و salt، خودِ کد پایتون را اجرا می‌کند و این‌ها را ذخیره می‌کند:
+`tool/gen_golden.py` با ثابت‌کردن کلیدها و salt، ماژول‌های واقعی Python در مخزن ویندوز را اجرا می‌کند و این‌ها را ذخیره می‌کند:
 خروجی scrypt/X25519/HKDF، بایت‌به‌بایت هندشیک موفق و ناموفق، فریم‌های رمزشده‌ی دو جهت،
 بسته‌بندی ماوس/کیبورد/فریم/JSON، توالی پیام‌های انتقال فایل، `safe_name` و بسته‌های discovery.
 تست‌های Dart همان بایت‌ها را بازتولید می‌کنند و رفتارهای امنیتی (رمز اشتباه، میزبان جعلی، دست‌کاری و replay
 فریم، طول نامعتبر، نوع پیام ناشناخته) را بررسی می‌کنند.
 
-بازتولید vectorها: `python tool/gen_golden.py --repo ../remotelink-python --out test/vectors/golden.json`
+بازتولید vectorها: `python tool/gen_golden.py --repo ../nexalink-windows --out test/vectors/golden.json`
 (نیاز: `pip install cryptography`).
 
 ## اجرای محلی
