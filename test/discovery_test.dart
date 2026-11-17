@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:remotelink/core/bytes.dart';
-import 'package:remotelink/core/discovery.dart';
+import 'package:viunalink/core/bytes.dart';
+import 'package:viunalink/core/discovery.dart';
 
 import 'golden.dart';
 
