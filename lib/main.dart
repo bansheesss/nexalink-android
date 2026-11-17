@@ -16,7 +16,7 @@ class RemoteLinkApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: appNavigatorKey,
-      title: 'NexaLink',
+      title: 'ViunaLink',
       debugShowCheckedModeBanner: false,
       locale: const Locale('fa'),
       supportedLocales: const [Locale('fa'), Locale('en')],
