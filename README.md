@@ -1,6 +1,6 @@
-# NexaLink برای اندروید (Viewer)
+# ViunaLink برای اندروید (Viewer)
 
-اپ اندروید برای کنترل کامپیوتری که **NexaLink ویندوز** روی آن Host است.
+اپ اندروید برای کنترل کامپیوتری که **ViunaLink ویندوز** روی آن Host است.
 پروتکل و رمزنگاری دقیقاً همان نسخه‌ی پایتون است (X25519 + scrypt(پسورد) + HKDF + AES‑256‑GCM).
 
 ## امکانات
@@ -14,18 +14,18 @@
 
 محدودیت‌ها: فقط Viewer است (گوشی نمی‌تواند Host باشد)، شناسه در LAN ابتدا مستقیم بررسی می‌شود؛ در صورت نبود میزبان محلی، اتصال از طریق Relay قابل تنظیم است،
 فایل‌های دریافتی در پوشه‌ی اختصاصی برنامه ذخیره می‌شوند
-(`Android/data/com.nexalink.nexalink/files/NexaLink`)، چیدمان کیبورد ترجمه نمی‌شود.
+(`Android/data/com.viunalink.viunalink/files/ViunaLink`)، چیدمان کیبورد ترجمه نمی‌شود.
 
 ## ساخت APK با GitHub Actions
 ```bash
 cd Android
-git init && git add . && git commit -m "NexaLink Android"
+git init && git add . && git commit -m "ViunaLink Android"
 git branch -M main
-git remote add origin https://github.com/<you>/nexalink-android.git
+git remote add origin https://github.com/<you>/viunalink-android.git
 git push -u origin main
 ```
 با push، workflow «Build APK» در تب Actions اجرا می‌شود (یا Run workflow). خروجی در Artifacts با نام
-`nexalink-apk`: فایل‌های `nexalink-1.2.0-arm64-v8a-release.apk` (اکثر گوشی‌ها)،
+`viunalink-apk`: فایل‌های `viunalink-1.2.0-arm64-v8a-release.apk` (اکثر گوشی‌ها)،
 `...-armeabi-v7a-...` (۳۲ بیتی قدیمی) و `...-x86_64-...` (شبیه‌ساز).
 APK با کلید debug امضا می‌شود؛ برای Play Store باید keystore بسازید.
 
@@ -47,7 +47,7 @@ Workflow دو job دارد:
 
 ## اجرای محلی
 ```bash
-flutter create --platforms=android --org com.nexalink --project-name nexalink .   # فقط بار اول
+flutter create --platforms=android --org com.viunalink --project-name viunalink .   # فقط بار اول
 git checkout lib pubspec.yaml; rm -f test/widget_test.dart; python tool/patch_android.py
 flutter pub get && flutter test && flutter run
 ```
@@ -58,6 +58,6 @@ flutter pub get && flutter test && flutter run
 
 ## وضعیت شبکه و مجوزها
 
-در شروع برنامه، اتصال TCP به `google.com:443` بررسی می‌شود و هم‌زمان کشف میزبان NexaLink در شبکه محلی انجام می‌گیرد. نشانگر نارنجی یعنی میزبان محلی پیدا شده، سبز یعنی اینترنت برقرار است و میزبان محلی پیدا نشده، و قرمز یعنی هیچ‌کدام در دسترس نیستند. این بررسی ICMP ping نیست؛ اتصال TCP است تا روی شبکه‌هایی که ICMP را مسدود می‌کنند نتیجه اشتباه ندهد.
+در شروع برنامه، اتصال TCP به `google.com:443` بررسی می‌شود و هم‌زمان کشف میزبان ViunaLink در شبکه محلی انجام می‌گیرد. نشانگر نارنجی یعنی میزبان محلی پیدا شده، سبز یعنی اینترنت برقرار است و میزبان محلی پیدا نشده، و قرمز یعنی هیچ‌کدام در دسترس نیستند. این بررسی ICMP ping نیست؛ اتصال TCP است تا روی شبکه‌هایی که ICMP را مسدود می‌کنند نتیجه اشتباه ندهد.
 
 مجوزهای شبکه اندروید از نوع عادی (normal) هستند و پنجره تأیید runtime نمایش نمی‌دهند؛ با این حال برنامه برای ارتباط شبکه‌ای نمی‌تواند کاملاً بدون مجوز سیستمی باشد.
