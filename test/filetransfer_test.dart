@@ -3,11 +3,11 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:remotelink/core/bytes.dart';
-import 'package:remotelink/core/filetransfer.dart';
-import 'package:remotelink/core/network.dart';
-import 'package:remotelink/core/protocol.dart';
-import 'package:remotelink/core/security.dart';
+import 'package:viunalink/core/bytes.dart';
+import 'package:viunalink/core/filetransfer.dart';
+import 'package:viunalink/core/network.dart';
+import 'package:viunalink/core/protocol.dart';
+import 'package:viunalink/core/security.dart';
 
 import 'golden.dart';
 
