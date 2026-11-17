@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:remotelink/core/relay.dart';
+import 'package:viunalink/core/relay.dart';
 
 void main() {
   test('relay viewer rejects non-nine-digit IDs before connecting', () async {
