@@ -10,27 +10,27 @@ permissions:
   contents: read
 
 jobs:
-  # Fails (red) when the Python reference no longer produces the committed
-  # golden vectors, i.e. the protocol changed and the Android app must follow.
+  # Fails when the Windows reference no longer produces the committed golden
+  # vectors, so Android stays compatible with the authoritative implementation.
   golden-drift:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
-          repository: bansheesss/remotelink-python
+          repository: bansheesss/nexalink-windows
           ref: main
-          path: _ref
+          path: _windows
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install cryptography==43.0.3
-      - name: Regenerate vectors from the Python reference
-        run: python tool/gen_golden.py --repo _ref --out /tmp/golden.json
+      - name: Regenerate vectors from the Windows reference
+        run: python tool/gen_golden.py --repo _windows --out /tmp/golden.json
       - name: Compare with committed vectors
         run: |
           diff -u test/vectors/golden.json /tmp/golden.json || {
-            echo "::error::Python reference changed. Regenerate test/vectors/golden.json and update the Dart code."
+            echo "::error::Windows reference changed. Regenerate test/vectors/golden.json and update the Dart code."
             exit 1
           }
 
