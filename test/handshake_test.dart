@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:viunalink/core/bytes.dart';
 import 'package:viunalink/core/errors.dart';
 import 'package:viunalink/core/network.dart';
-import 'package:viunalink/core/protocol.dart';
 import 'package:viunalink/core/security.dart';
 
 import 'golden.dart';
@@ -40,7 +39,7 @@ void main() {
     return r;
   }
 
-  test('client handshake emits the same bytes as the Python client', () async {
+  test('client handshake emits the same bytes as the Windows reference client', () async {
     final r = await authenticated();
     expect(r.sink.writes.map(toHex).toList(), ok['client_to_host']);
     expect(r.conn.cipher, isNotNull);
