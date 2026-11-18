@@ -29,7 +29,16 @@ if source.exists():
             dest.mkdir(parents=True, exist_ok=True)
             for child in item.iterdir():
                 if child.is_file():
-                    shutil.copy2(child, dest / child.name)
+                    target_file = dest / child.name
+                    # Flutter's template creates PNG launcher icons in these
+                    # density folders. A vector XML with the same resource
+                    # name is a duplicate Android resource, so remove the
+                    # generated PNG before installing the branded vector.
+                    if child.suffix.lower() == ".xml":
+                        png_file = target_file.with_suffix(".png")
+                        if png_file.exists():
+                            png_file.unlink()
+                    shutil.copy2(child, target_file)
         elif item.is_file():
             shutil.copy2(item, dest)
 print("Patched Android manifest and ViunaLink launcher icons")
